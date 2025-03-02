@@ -11,6 +11,8 @@ import { VictoryScene } from './Effects/VictoryScene';
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+
 
   const mainRef = useRef(null)
   const sceneRef = useRef(null)
@@ -46,6 +48,12 @@ const Home = () => {
     <div ref={mainRef} className='overflow-x-hidden bg-black'>
       <Suspense fallback={null}>
         <div className='w-full relative grid place-items-center  '>
+          {isLoading && (
+            <div className="fixed top-0 left-0 w-full h-full flex-col flex items-center justify-center bg-black text-white text-3xl z-[999]">
+              <img className='w-[30%]' src="/images/loader.gif" alt="" />
+              <p>Loading . . .</p>
+            </div>
+          )}
           <h1 id='text' className='text-7xl absolute z-[99] left-12 top-10 text-white w-[45%]'>
             Advanced Team ®
             Digital Design
@@ -55,7 +63,9 @@ const Home = () => {
             We pride ourselves on our ability to craft digital products that not only meet but exceed the expectations of our clients. With a wealth of experience and expertise in the field of digital product development, we understand how to design user-friendly interfaces that captivate and engage audiences.</h1>
           <h1 id='scrollText' className='text-base fixed z-[99] left-12 top-[13%] text-white '>Scroll Down</h1>
           <div ref={sceneRef} className="w-full h-[100vh]">
-            <Canvas style={{ pointerEvents: 'none' }}  >
+            <Canvas
+              onCreated={() => setIsLoading(false)} style={{ pointerEvents: 'none' }}  >
+
               <Scene progress={progress} />
             </Canvas>
           </div>
@@ -154,18 +164,20 @@ const Home = () => {
       </div>
       <Suspense fallback={null}>
         <div className="w-full relative h-[100vh]">
-          <Canvas style={{ pointerEvents: 'none' }}  >
+          <Canvas
+            onCreated={() => setIsLoading(false)}
+            style={{ pointerEvents: 'none' }}  >
             <VictoryScene />
           </Canvas>
           <div className=" absolute top-[28%] z-[-1]  w-full flex items-center scrollernone justify-center text-white   ">
-          <Marquee>
-            <p className='text-8xl'> - Awards </p>
-            <p className='text-8xl'> - Recognition </p>
-            <p className='text-8xl'> - Awards  </p>
-            <p className='text-8xl'> - Recognition </p>
-            <p className='text-8xl'> - Awards  </p>
-          </Marquee>
-        </div>
+            <Marquee>
+              <p className='text-8xl'> - Awards </p>
+              <p className='text-8xl'> - Recognition </p>
+              <p className='text-8xl'> - Awards  </p>
+              <p className='text-8xl'> - Recognition </p>
+              <p className='text-8xl'> - Awards  </p>
+            </Marquee>
+          </div>
         </div>
       </Suspense>
 
