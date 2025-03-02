@@ -49,9 +49,8 @@ const Home = () => {
       <Suspense fallback={null}>
         <div className='w-full relative grid place-items-center  '>
           {isLoading && (
-            <div className="fixed top-0 left-0 w-full h-full flex-col flex items-center justify-center bg-black text-white text-3xl z-[999]">
+            <div className="fixed top-0 left-0 w-full h-[100vh] flex-col flex items-center justify-center bg-black text-white text-3xl z-[999]">
               <img className='w-[80%]' src="/images/loader.gif" alt="" />
-             
             </div>
           )}
           <h1 id='text' className='text-7xl absolute z-[99] left-12 top-10 text-white w-[45%]'>
