@@ -42,8 +42,13 @@ const Home = () => {
         opacity: 1, transform: " rotate(3deg) ", delay: 15.5, duration: 4
       }, "opa")
 
-  }, [])
+    // Hide loader after 1 second
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
+  
   return (
     <div ref={mainRef} className='overflow-x-hidden bg-black'>
       <Suspense fallback={null}>
@@ -63,7 +68,7 @@ const Home = () => {
           <h1 id='scrollText' className='text-base fixed z-[99] left-12 top-[13%] text-white '>Scroll Down</h1>
           <div ref={sceneRef} className="w-full h-[100vh]">
             <Canvas
-              onCreated={() => setIsLoading(false)} style={{ pointerEvents: 'none' }}  >
+              style={{ pointerEvents: 'none' }}  >
 
               <Scene progress={progress} />
             </Canvas>
@@ -164,7 +169,7 @@ const Home = () => {
       <Suspense fallback={null}>
         <div className="w-full relative h-[100vh]">
           <Canvas
-            onCreated={() => setIsLoading(false)}
+           
             style={{ pointerEvents: 'none' }}  >
             <VictoryScene />
           </Canvas>
